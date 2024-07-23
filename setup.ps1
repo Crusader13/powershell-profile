@@ -66,6 +66,7 @@ if (-not (Test-InternetConnection)) {
 # Profile creation or update
 if (!(Test-Path -Path $PROFILE -PathType Leaf)) {
     try {
+        Write-Host "Das PowerShell Profil: " $PROFILE
         # Detect Version of PowerShell & Create Profile directories if they do not exist.
         $profilePath = ""
         if ($PSVersionTable.PSEdition -eq "Core") {
