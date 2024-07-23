@@ -131,7 +131,7 @@ function Get-PubIP { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
 # Open WinUtil
 function winutil {
-	iwr -useb https://christitus.com/win | iex
+    Invoke-RestMethod https://christitus.com/windev | Invoke-Expression
 }
 
 # System Utilities
