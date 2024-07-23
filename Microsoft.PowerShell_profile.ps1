@@ -155,7 +155,7 @@ function uptime {
     }
 }
 
-function reload-profile {
+function Reload-Profile {
     & $profile
 }
 
@@ -164,41 +164,16 @@ function unzip ($file) {
     $fullFile = Get-ChildItem -Path $pwd -Filter $file | ForEach-Object { $_.FullName }
     Expand-Archive -Path $fullFile -DestinationPath $pwd
 }
-function hb {
-    if ($args.Length -eq 0) {
-        Write-Error "No file path specified."
-        return
-    }
-    
-    $FilePath = $args[0]
-    
-    if (Test-Path $FilePath) {
-        $Content = Get-Content $FilePath -Raw
-    } else {
-        Write-Error "File path does not exist."
-        return
-    }
-    
-    $uri = "http://bin.christitus.com/documents"
-    try {
-        $response = Invoke-RestMethod -Uri $uri -Method Post -Body $Content -ErrorAction Stop
-        $hasteKey = $response.key
-        $url = "http://bin.christitus.com/$hasteKey"
-        Write-Output $url
-    } catch {
-        Write-Error "Failed to upload the document. Error: $_"
-    }
-}
 function grep($regex, $dir) {
     if ( $dir ) {
-        Get-ChildItem $dir | select-string $regex
+        Get-ChildItem $dir | Select-String $regex
         return
     }
-    $input | select-string $regex
+    $input | Select-String $regex
 }
 
 function df {
-    get-volume
+    Get-Volume
 }
 
 function sed($file, $find, $replace) {
@@ -232,7 +207,7 @@ function tail {
 }
 
 # Quick File Creation
-function nf { param($name) New-Item -ItemType "file" -Path . -Name $name }
+function touch { param($name) New-Item -ItemType "file" -Path . -Name $name }
 
 # Directory Management
 function mkcd { param($dir) mkdir $dir -Force; Set-Location $dir }
@@ -283,7 +258,6 @@ function sysinfo { Get-ComputerInfo }
 # Networking Utilities
 function flushdns {
 	Clear-DnsClientCache
-	Write-Host "DNS has been flushed"
 }
 
 # Clipboard Utilities
@@ -397,7 +371,7 @@ head <path> [n] - Displays the first n lines of a file (default 10).
 
 tail <path> [n] - Displays the last n lines of a file (default 10).
 
-nf <name> - Creates a new file with the specified name.
+touch <name> - Creates a new file with the specified name.
 
 mkcd <dir> - Creates and changes to a new directory.
 
