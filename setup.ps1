@@ -1,6 +1,6 @@
 # Ensure the script can run with elevated privileges
 if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Warning "Please run this script as an Administrator!"
+    Write-Warning "Du musst das Skript als Administrator öffnen!"
     break
 }
 
@@ -66,7 +66,6 @@ if (-not (Test-InternetConnection)) {
 # Profile creation or update
 if (!(Test-Path -Path $PROFILE -PathType Leaf)) {
     try {
-        Write-Host "Das PowerShell Profil: " $PROFILE
         # Detect Version of PowerShell & Create Profile directories if they do not exist.
         $profilePath = ""
         if ($PSVersionTable.PSEdition -eq "Core") {
@@ -87,8 +86,7 @@ if (!(Test-Path -Path $PROFILE -PathType Leaf)) {
     catch {
         Write-Error "Failed to create or update the profile. Error: $_"
     }
-}
-else {
+} else {
     try {
         Get-Item -Path $PROFILE | Move-Item -Destination "oldprofile.ps1" -Force
         Invoke-RestMethod https://github.com/Crusader13/powershell-profile/raw/main/Microsoft.PowerShell_profile.ps1 -OutFile $PROFILE
