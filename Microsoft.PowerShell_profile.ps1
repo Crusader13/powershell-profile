@@ -373,6 +373,8 @@ la - Lists all files in the current directory with detailed formatting.
 
 ll - Lists all files, including hidden, in the current directory with detailed formatting.
 
+lns <path> <target> - Creates a symbolic link 
+
 gs - Shortcut for 'git status'.
 
 ga - Shortcut for 'git add .'.
