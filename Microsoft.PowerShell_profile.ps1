@@ -116,6 +116,10 @@ function winutil {
     Invoke-RestMethod https://christitus.com/windev | Invoke-Expression
 }
 
+function lns($path, $target) {
+    New-Item -ItemType SymbolicLink -Path $path -Target $target
+}
+
 # System Utilities
 function admin {
     if ($args.Count -gt 0) {
