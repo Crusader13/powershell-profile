@@ -118,7 +118,7 @@ function winutil {
     Invoke-RestMethod https://christitus.com/windev | Invoke-Expression
 }
 
-function lns($path, $target) {
+function lns($target, $path) {
     New-Item -ItemType SymbolicLink -Path $path -Target $target
 }
 
@@ -375,7 +375,7 @@ la - Lists all files in the current directory with detailed formatting.
 
 ll - Lists all files, including hidden, in the current directory with detailed formatting.
 
-lns <path> <target> - Creates a symbolic link 
+lns <target> <path> - Creates a symbolic link 
 
 gs - Shortcut for 'git status'.
 
