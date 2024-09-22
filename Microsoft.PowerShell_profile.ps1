@@ -119,7 +119,7 @@ function winutil {
 }
 
 function lns($target, $path) {
-    New-Item -ItemType SymbolicLink -Path $path -Target $target
+    New-Item -ItemType SymbolicLink -Target $target -Path $path
 }
 
 # System Utilities
