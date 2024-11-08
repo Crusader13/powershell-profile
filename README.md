@@ -40,11 +40,3 @@ PS> oh-my-posh font install
     ↑/k up • ↓/j down • q quit • ? more</pre>
 3. With the up/down arrow keys, select the font you would like to install and press <kbd>ENTER</kbd>
 4. DONE!
-   
-## Customize this profile
-
-**Do not make any changes to the `Microsoft.PowerShell_profile.ps1` file**, since it's hashed and automatically overwritten by any commits to this repository.
-
-After the profile is installed and active, run the `Edit-Profile` function to create a separate profile file for your current user. Make any changes and customizations in this new file named `profile.ps1`.
-
-Now, enjoy your enhanced and stylish PowerShell experience! 🚀
