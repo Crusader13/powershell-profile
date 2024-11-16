@@ -9,10 +9,17 @@ $wingetInstallAppIds = "JetBrains.RustRover",
 "RiotGames.LeagueOfLegends.EUW",
 "Nlitesoft.NTLite",
 "Proton.ProtonPass",
-"Microsoft.OpenJDK.21"
+"Microsoft.OpenJDK.21",
+"LLVM.LLVM",
+"CoreyButler.NVMforWindows"
 
 $downloadUrls = "https://win.rustup.rs/x86_64"
 
 foreach ($app in $wingetInstallAppIds) {
     winget install --exact --id $app --scope machine --accept-source-agreements --accept-package-agreements
 }
+
+# use latest npm version
+$nvmVersion = "latest"
+nvm install $nvmVersion
+nvm use $nvmVersion
