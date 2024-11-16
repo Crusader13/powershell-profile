@@ -3,6 +3,23 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     return
 }
 
+Function Get-RedirectedUrl {
+
+    Param (
+        [Parameter(Mandatory=$true)]
+        [String]$URL
+    )
+
+    $request = [System.Net.WebRequest]::Create($url)
+    $request.AllowAutoRedirect=$false
+    $response=$request.GetResponse()
+
+    If ($response.StatusCode -eq "Found")
+    {
+        $response.GetResponseHeader("Location")
+    }
+}
+
 $wingetInstallAppIds =
 "JetBrains.RustRover",
 "Microsoft.VisualStudio.2022.Community",
@@ -41,9 +58,19 @@ $wingetInstallAppIds =
 
 $downloadUrls = "https://win.rustup.rs/x86_64"
 
+Write-Output "Herunterladen der Programme mit winget"
 foreach ($app in $wingetInstallAppIds) {
     winget install --exact --id $app --scope machine --accept-source-agreements --accept-package-agreements
 }
+
+
+$downloadDir = New-Item -ItemType Directory downloaded
+Write-Output "Herunterladen der installer im Ordner: $downloadDir"
+foreach ($url in $downloadUrls) {
+    $FileName = [System.IO.Path]::GetFileName((Get-RedirectedUrl "$url"))
+    Invoke-WebRequest -OutFile .\$downloadDir\$FileName $url
+}
+
 
 # use latest npm version
 $nvmVersion = "latest"
