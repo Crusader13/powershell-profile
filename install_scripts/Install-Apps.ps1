@@ -55,22 +55,20 @@ $wingetInstallAppIds =
 "Discord.Discord",
 "Microsoft.Teams"
 
-
 $downloadUrls = "https://win.rustup.rs/x86_64"
 
 Write-Output "Herunterladen der Programme mit winget"
 foreach ($app in $wingetInstallAppIds) {
+    Write-Output "Installieren von $app"
     winget install --exact --id $app --scope machine --accept-source-agreements --accept-package-agreements
 }
-
 
 $downloadDir = New-Item -ItemType Directory downloaded
 Write-Output "Herunterladen der installer im Ordner: $downloadDir"
 foreach ($url in $downloadUrls) {
     $FileName = [System.IO.Path]::GetFileName((Get-RedirectedUrl "$url"))
-    Invoke-WebRequest -OutFile .\$downloadDir\$FileName $url
+    Invoke-WebRequest -OutFile $downloadDir\$FileName $url
 }
-
 
 # use latest npm version
 $nvmVersion = "latest"
