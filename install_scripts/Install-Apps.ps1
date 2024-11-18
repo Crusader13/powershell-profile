@@ -3,28 +3,10 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     return
 }
 
-Function Get-RedirectedUrl {
-
-    Param (
-        [Parameter(Mandatory=$true)]
-        [String]$URL
-    )
-
-    $request = [System.Net.WebRequest]::Create($url)
-    $request.AllowAutoRedirect=$false
-    $response=$request.GetResponse()
-
-    If ($response.StatusCode -eq "Found")
-    {
-        $response.GetResponseHeader("Location")
-    }
-}
-
 $wingetInstallAppIds =
 "JetBrains.RustRover",
 "Microsoft.VisualStudio.2022.Community",
 "RiotGames.Valorant.EU",
-"RiotGames.LeagueOfLegends.EUW",
 "Nlitesoft.NTLite",
 "Proton.ProtonPass",
 "Microsoft.OpenJDK.21",
@@ -55,7 +37,8 @@ $wingetInstallAppIds =
 "Discord.Discord",
 "Microsoft.Teams"
 
-$downloadUrls = "https://win.rustup.rs/x86_64"
+$downloadUrls = "https://win.rustup.rs/x86_64",
+"https://download01.logi.com/web/ftp/pub/techsupport/gaming/OnboardMemoryManager_2.2.5062.exe"
 
 Write-Output "Herunterladen der Programme mit winget"
 foreach ($app in $wingetInstallAppIds) {
@@ -64,11 +47,14 @@ foreach ($app in $wingetInstallAppIds) {
 }
 
 $downloadDir = New-Item -ItemType Directory downloaded
+$prevLocation = Get-Location
+Set-Location $downloadDir
+
 Write-Output "Herunterladen der installer im Ordner: $downloadDir"
 foreach ($url in $downloadUrls) {
-    $FileName = [System.IO.Path]::GetFileName((Get-RedirectedUrl "$url"))
-    Invoke-WebRequest -OutFile $downloadDir\$FileName $url
+    curl.exe -O $url
 }
+Set-Location $prevLocation
 
 # use latest npm version
 $nvmVersion = "latest"
