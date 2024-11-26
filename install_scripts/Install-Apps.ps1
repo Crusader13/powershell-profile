@@ -38,12 +38,14 @@ $wingetInstallAppIds =
 "Microsoft.Teams"
 
 $downloadUrls = "https://win.rustup.rs/x86_64",
-"https://download01.logi.com/web/ftp/pub/techsupport/gaming/OnboardMemoryManager_2.2.5062.exe"
+"https://download01.logi.com/web/ftp/pub/techsupport/gaming/OnboardMemoryManager_2.2.5062.exe",
+"https://github.com/geovens/gInk/releases/download/v1.1.1/gInk_v1.1.1.zip",
+"https://github.com/Collective-Software/ClickPaste/releases/download/v1.3.0/ClickPaste_v1.3.0.zip"
 
 Write-Output "Herunterladen der Programme mit winget"
 foreach ($app in $wingetInstallAppIds) {
     Write-Output "Installieren von $app"
-    winget install --exact --id $app --scope machine --accept-source-agreements --accept-package-agreements
+    winget install --exact --id $app --accept-source-agreements --accept-package-agreements
 }
 
 $downloadDir = New-Item -ItemType Directory downloaded
