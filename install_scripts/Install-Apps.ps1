@@ -14,6 +14,7 @@ $wingetInstallAppIds =
 "CoreyButler.NVMforWindows",
 "Microsoft.PowerShell",
 "Microsoft.VCRedist.2015+.x64",
+"Microsoft.DotNet.DesktopRuntime.9",
 "VSCodium.VSCodium",
 "rcmaehl.MSEdgeRedirect",
 "Notepad++.Notepad++",
