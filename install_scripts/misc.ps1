@@ -1,5 +1,10 @@
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Output "Du musst das Skript als Administrator ausführen"
+    return
+}
+
 # Set the wallpaper
-$WallpaperPath = "E:\wallpaper.png"
+$WallpaperPath = "C:\wallpaper.png"
 Copy-Item -Path .\new_wallpaper.png $WallpaperPath
 Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wallpaper -Value $WallpaperPath
 
