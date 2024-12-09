@@ -6,7 +6,8 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 # Set the wallpaper
 $WallpaperPath = "C:\wallpaper.png"
 Copy-Item -Path .\new_wallpaper.png $WallpaperPath
-Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wallpaper -Value $WallpaperPath
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wallpaper -Type String -Value $WallpaperPath
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -Type String -Value "0"
 
 # Install the fonts
 $fontFolder = ".\fonts"
