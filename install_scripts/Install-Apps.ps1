@@ -5,16 +5,17 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 $wingetInstallAppIds =
 "JetBrains.RustRover",
-"Microsoft.VisualStudio.2022.Community",
 "RiotGames.Valorant.EU",
 "Nlitesoft.NTLite",
 "Proton.ProtonPass",
-"Microsoft.OpenJDK.21",
 "LLVM.LLVM",
+"Microsoft.OpenJDK.21",
 "CoreyButler.NVMforWindows",
+"Microsoft.VisualStudio.2022.Community",
 "Microsoft.PowerShell",
 "Microsoft.VCRedist.2015+.x64",
 "Microsoft.DotNet.DesktopRuntime.9",
+"Microsoft.WindowsTerminal",
 "VSCodium.VSCodium",
 "rcmaehl.MSEdgeRedirect",
 "Notepad++.Notepad++",
@@ -32,7 +33,6 @@ $wingetInstallAppIds =
 "ShareX.ShareX",
 "Nextcloud.NextcloudDesktop",
 "yt-dlp.yt-dlp",
-"Microsoft.WindowsTerminal",
 "OBSProject.OBSStudio",
 "gerardog.gsudo",
 "Discord.Discord",
@@ -63,3 +63,8 @@ Set-Location $prevLocation
 $nvmVersion = "latest"
 nvm install $nvmVersion
 nvm use $nvmVersion
+
+# set JAVA_HOME environment variable
+$JavaPath = "C:\Program Files\Microsoft\jdk-21.0.5.11-hotspot"
+[System.Environment]::SetEnvironmentVariable('JAVA_HOME', $JavaPath, [System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('Path', "$env:PATH;%JAVA_HOME%\bin", [System.EnvironmentVariableTarget]::Machine)
