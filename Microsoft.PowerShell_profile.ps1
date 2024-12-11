@@ -248,6 +248,10 @@ function flushdns {
 	Clear-DnsClientCache
 }
 
+function python {
+    C:\Users\Thomas\AppData\Local\Programs\Python\Python313\python.exe
+}
+
 # Clipboard Utilities
 function cpy { Set-Clipboard $args[0] }
 
