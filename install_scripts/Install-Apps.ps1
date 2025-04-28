@@ -4,10 +4,10 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 }
 
 $wingetInstallAppIds =
+"JetBrains.PyCharm.Community",
 "JetBrains.RustRover",
 "RiotGames.Valorant.EU",
 "Nlitesoft.NTLite",
-"Proton.ProtonPass",
 "LLVM.LLVM",
 "Microsoft.OpenJDK.21",
 "CoreyButler.NVMforWindows",
@@ -22,7 +22,6 @@ $wingetInstallAppIds =
 "Neovim.Neovim",
 "VideoLAN.VLC",
 "Git.Git",
-"Hibbiki.Chromium",
 "Valve.Steam",
 "GitHub.GitHubDesktop",
 "JanDeDobbeleer.OhMyPosh",
@@ -36,10 +35,11 @@ $wingetInstallAppIds =
 "OBSProject.OBSStudio",
 "gerardog.gsudo",
 "Discord.Discord",
-"Microsoft.Teams"
+"Microsoft.Teams",
+"Alex313031.Thorium.AVX2"
 
-$downloadUrls = "https://win.rustup.rs/x86_64",
-"https://download01.logi.com/web/ftp/pub/techsupport/gaming/OnboardMemoryManager_2.2.5062.exe",
+$downloadUrls = 
+"https://download01.logi.com/web/ftp/pub/techsupport/gaming/OnboardMemoryManager_2.4.8406.exe",
 "https://github.com/geovens/gInk/releases/download/v1.1.1/gInk_v1.1.1.zip",
 "https://github.com/Collective-Software/ClickPaste/releases/download/v1.3.0/ClickPaste_v1.3.0.zip"
 
