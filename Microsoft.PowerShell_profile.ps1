@@ -287,7 +287,7 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock $scriptblock
 
 
 function Get-Theme {
-    oh-my-posh init pwsh --config $ENV:%USERPROFILE%\Documents\PowerShell\cobalt2.omp.json | Invoke-Expression
+    oh-my-posh init pwsh --config $ENV:USERPROFILE\Documents\PowerShell\cobalt2.omp.json | Invoke-Expression
 }
 
 ## Final Line to set prompt
